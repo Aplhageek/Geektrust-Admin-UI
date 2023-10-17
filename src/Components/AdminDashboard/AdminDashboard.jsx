@@ -9,6 +9,7 @@ import TableRow from "../TableRow/TableRow";
 import EditModal from "../EditModal/EditModal";
 import ConfirmationModal from "../EditModal/ConfirmationModal";
 import Search from "../Search/Search";
+import { enqueueSnackbar } from "notistack";
 
 const AdminDashboard = () => {
     // ------------------------------------------------------------------------------------------------------
@@ -34,7 +35,7 @@ const AdminDashboard = () => {
             const result = await axios.get(URL);
             stateUpdater(prev => result.data);
         } catch (error) {
-            console.log(error, "Error fetch");
+            enqueueSnackbar( "Error while fetching user list" , { variant : "success" } );
         }
     }
 
@@ -46,6 +47,7 @@ const AdminDashboard = () => {
     let endIndex = currentPage * usersPerPage;
     let startIndex = endIndex - usersPerPage;
     let displayUsers = filteredUsersList.slice(startIndex, endIndex);
+
 
     // ------------------------------------------------------------------------------------------------------
     // filter functions
@@ -64,6 +66,7 @@ const AdminDashboard = () => {
             setFilteredUsersList([...userList]);
         }
     }
+
 
     // ------------------------------------------------------------------------------------------------------
     // checkbox functions
@@ -90,20 +93,22 @@ const AdminDashboard = () => {
     // ------------------------------------------------------------------------------------------------------
     // deleting functions
     // ------------------------------------------------------------------------------------------------------
-    const deleteUser = (id) => {
-        const updatedUsers = userList.filter((user) => user.id !== id);
+    const deleteUser = (userToDelete) => {
+        const updatedUsers = userList.filter((user) => user.id !== userToDelete.id);
         setUserList([...updatedUsers]);
-        const updatedSelectedUsers = selectedUsers.filter((userID) => userID !== id);
+        const updatedSelectedUsers = selectedUsers.filter((userID) => userID !== userToDelete.id);
         setSelectedUsers([...updatedSelectedUsers]);
+        enqueueSnackbar(`${userToDelete.name} has been removed` , {variant : "info"});
     }
 
     const deleteSelectedUsers = () => {
         if (selectedUsers.length === 0) {
-            alert("Please select a user to delete");
             return;
         }
         const updatedUsers = userList.filter((user) => !selectedUsers.includes(user.id));
         setUserList([...updatedUsers]);
+        let numberOfUsers = selectedUsers.length;
+        enqueueSnackbar(`${numberOfUsers} ${numberOfUsers < 2 ? "user" : "users"} has been removed` , {variant : "info"});
         setSelectedUsers([]);
     }
 
@@ -131,7 +136,7 @@ const AdminDashboard = () => {
     const openConfirmationModal = (user) => {
         if (user) {
             setConfirmationMessage(`Are you sure you want to remove ${user.name} ?`)
-            setUserToDelete(user.id);
+            setUserToDelete(user);
         } else {
             setConfirmationMessage("Are you sure you want to remove all selected users ?");
             setUserToDelete(null);
@@ -156,6 +161,7 @@ const AdminDashboard = () => {
         setUserList((previous) => {
             return previous.map((user) => (user.id === editedUser.id ? editedUser : user));
         });
+        enqueueSnackbar(`${editedUser.name} has been updated`, { variant : "info"} );
     };
 
     const onClose = () => {

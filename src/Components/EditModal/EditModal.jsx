@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import styles from './EditModal.module.css';
+import { enqueueSnackbar } from "notistack";
 
 const EditModal = ({ userToEdit, onClose, onSave }) => {
     const [user, setUser] = useState({ ...userToEdit });
@@ -15,18 +16,17 @@ const EditModal = ({ userToEdit, onClose, onSave }) => {
         if (!isValidUser(user)) return;
         onSave(user);
         onClose();
-        alert("Saved");
     }
 
     const isValidUser = (user) => {
         if (user.name.length <= 2) {
-            alert('Please enter a valid name');
+            enqueueSnackbar("Name must be at least 3 characters", { variant : "warning"});
             return false;
         } else if (!user.email.includes('@')) {
-            alert('Please enter a valid email');
+            enqueueSnackbar("Kindly enter a valid email address", { variant : "warning"});
             return false;
         } else if (!['admin', 'member'].includes(user.role)) {
-            alert('Role can only be admin or member');
+            enqueueSnackbar("Role can only be Admin or Member" , { variant : "warning"});
             return false;
         } else {
             return true;
