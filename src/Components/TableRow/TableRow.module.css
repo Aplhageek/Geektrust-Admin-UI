@@ -1,0 +1,12 @@
+.action_icons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 24px;
+}
+
+.action_icons > img {
+    height: 15px;
+}
+
+
