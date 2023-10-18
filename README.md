@@ -34,4 +34,4 @@ project is deployed using netlify : [Admin UI](https://admin-ui-jayesh.netlify.a
 
 ![Lighthouse Report](image-1.png)
 
-![Performance Metrics](image.png)
+![Performance Metrics](image-2.png)
