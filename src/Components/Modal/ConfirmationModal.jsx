@@ -1,4 +1,4 @@
-import styles from './EditModal.module.css';
+import styles from './Modal.module.css';
 
 
 const ConfirmationModal = ({message, onConfirm}) => {

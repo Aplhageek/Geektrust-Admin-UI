@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from './EditModal.module.css';
+import styles from './Modal.module.css';
 import { enqueueSnackbar } from "notistack";
 
 const EditModal = ({ userToEdit, onClose, onSave }) => {
