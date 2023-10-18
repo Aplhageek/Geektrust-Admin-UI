@@ -2,6 +2,12 @@
 
 This project was created using vite
 
+To install and run the app locally, follow these steps:
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Run the development server with `npm run dev`.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -21,4 +27,4 @@ Your app is ready to be deployed!
 
 ### Deployment
 
-project is deployed using netlify : [""]
+project is deployed using netlify : [Your Link Text](https://admin-ui-jayesh.netlify.app/)
