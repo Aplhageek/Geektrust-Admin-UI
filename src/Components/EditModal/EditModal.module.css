@@ -1,62 +1,68 @@
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: white;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-  }
-
-.modal_content {
-    background-color: #fff;
-    color: black;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 400px;
-  }
-
-.editing_modal_container{
-    text-align: start;
-    background-color: #fff;
-    color: black;
-    min-width: 22rem;
-    border-radius: 8px;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: var(--color-white);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
-.modal_title{
-    font-weight: 700;
-    font-size: 20px;
-    text-align: center;
-}
-.input_wrapper{
-    border-bottom: 1px solid #ccc;
-    padding: 0.5rem 1rem ;
-}
-
-.inputs{
-    display: block;
-    width: 90%;
-    margin-top: 5px ;
-    margin-bottom: 1rem;
-
-    padding: 8px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    background-color: transparent;
+.editing_modal_container {
+  text-align: start;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  width: 25rem;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.btn{
-    width: 50%;
-    border: none;
-    background-color: #fff;
+.confirmationModal_wrapper {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  width: 18rem;
+  border-radius: 8px;
+}
+
+.modal_title {
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.message,
+.input_wrapper {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+}
+
+.message {
+  padding: 1rem;
+  text-align: center;
+}
+
+.inputs {
+  display: block;
+  width: 90%;
+  margin-top: 5px;
+  margin-bottom: 1rem;
+
+  padding: 8px;
+  border: 2px solid var(--color-border);
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.btn {
+  width: 50%;
+  border: none;
+  color: var(--color-blue-2);
+  background-color: var(--color-white);
   padding: 15px 15px;
   cursor: pointer;
   text-align: center;
@@ -64,16 +70,31 @@
   transition: all 0.2s ease-in-out;
 }
 
-.modal_buttons{
-    display: flex;
-    justify-content: stretch;
+.modal_buttons {
+  display: flex;
+  justify-content: stretch;
 }
 
-.btn:first-child{
-    border-right: 1px solid #ccc;
+.btn:first-child {
+  border-right: 1px solid var(--color-border);
 }
 
-.btn:active{
-    transform: scale(0.9);
+.btn:active {
+  transform: scale(0.9);
 }
 
+@media (max-width: 650px) {
+  .editing_modal_container {
+    width: 60vw;
+  }
+  
+}
+
+@media (max-width: 540px) {
+  .confirmationModal_wrapper {
+    width: 65vw;
+  }
+  .editing_modal_container {
+    width: 75vw;
+  }
+}

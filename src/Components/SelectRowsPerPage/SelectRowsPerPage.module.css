@@ -1,4 +1,7 @@
-.rows_perpage_input{
-    padding: 1rem;
-    width: 6rem;
+.rows_perpage_input {
+  padding: 10px;
+  border: 1px solid var(--color-blue-1);
+  border-radius: 5px;
+  font-size: 16px;
+  width: 6rem;
 }

@@ -1,39 +1,42 @@
 :root {
   line-height: 1.5;
   font-weight: 400;
-
-  /* color-scheme: light dark; */
   color: var(--color-black) ;
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
-  --color-blue-1 : #1d58aa;
+  --color-blue-1 : #1d58aa; 
   --color-black : #121212;
-  --color-white : #FFFFF0;
+  --color-white : #fff;
   --color-hover: #F4F6F9;
-  --color-hover2: #F0F2F5;
+  --color-header: #f1f1f1;  
   --color-blue-2: #007AFF;
   --color-blue-3: #007AFF;
+  --color-border: #ccc;
+  --color-deletebtn: rgb(211, 6, 6);
+  --color-disabled-btn : grey;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
 html {
   font-family: "Poppins", sans-serif;
 }
 
-
 body {
+  min-height: 100vh;
+  min-width: 100vw;
   margin: 0;
   background-color: var(--color-hover);
   min-height: 100vh;
-}
-
-.snackbar{
-  /* width: 500px; */
 }

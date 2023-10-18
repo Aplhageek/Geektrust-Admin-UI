@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { useEffect, useState } from "react";
 import SelectRowsPerPage from "../SelectRowsPerPage/SelectRowsPerPage";
 import axios from "axios";
@@ -10,6 +8,7 @@ import EditModal from "../EditModal/EditModal";
 import ConfirmationModal from "../EditModal/ConfirmationModal";
 import Search from "../Search/Search";
 import { enqueueSnackbar } from "notistack";
+import styles from './AdminDashboard.module.css';
 
 const AdminDashboard = () => {
     // ------------------------------------------------------------------------------------------------------
@@ -35,7 +34,7 @@ const AdminDashboard = () => {
             const result = await axios.get(URL);
             stateUpdater(prev => result.data);
         } catch (error) {
-            enqueueSnackbar( "Error while fetching user list" , { variant : "success" } );
+            enqueueSnackbar("Error while fetching user list", { variant: "error" });
         }
     }
 
@@ -54,7 +53,7 @@ const AdminDashboard = () => {
     // ------------------------------------------------------------------------------------------------------
     const performSearch = (searchQuery) => {
         const query = searchQuery.trim().toLowerCase();
-    
+
         if (query.length > 0) {
             const updatedUsers = userList.filter((user) => (
                 user.role.toLowerCase().includes(query) ||
@@ -96,9 +95,10 @@ const AdminDashboard = () => {
     const deleteUser = (userToDelete) => {
         const updatedUsers = userList.filter((user) => user.id !== userToDelete.id);
         setUserList([...updatedUsers]);
+        // to remove user from selected users list
         const updatedSelectedUsers = selectedUsers.filter((userID) => userID !== userToDelete.id);
         setSelectedUsers([...updatedSelectedUsers]);
-        enqueueSnackbar(`${userToDelete.name} has been removed` , {variant : "info"});
+        enqueueSnackbar(`${userToDelete.name} has been removed`, { variant: "info" });
     }
 
     const deleteSelectedUsers = () => {
@@ -108,7 +108,7 @@ const AdminDashboard = () => {
         const updatedUsers = userList.filter((user) => !selectedUsers.includes(user.id));
         setUserList([...updatedUsers]);
         let numberOfUsers = selectedUsers.length;
-        enqueueSnackbar(`${numberOfUsers} ${numberOfUsers < 2 ? "user" : "users"} has been removed` , {variant : "info"});
+        enqueueSnackbar(`${numberOfUsers} ${numberOfUsers < 2 ? "user" : "users"} has been removed`, { variant: "info" });
         setSelectedUsers([]);
     }
 
@@ -161,7 +161,7 @@ const AdminDashboard = () => {
         setUserList((previous) => {
             return previous.map((user) => (user.id === editedUser.id ? editedUser : user));
         });
-        enqueueSnackbar(`${editedUser.name} has been updated`, { variant : "info"} );
+        enqueueSnackbar(`${editedUser.name} has been updated`, { variant: "info" });
     };
 
     const onClose = () => {
@@ -187,20 +187,32 @@ const AdminDashboard = () => {
     return (
         <div>
             {/* Search Bar */}
-            <Search performSearch={performSearch} />
+            <div className={styles.input_wrapper} >
+                <Search performSearch={performSearch} />
+                <SelectRowsPerPage rowsPerPage={usersPerPage} setUsersPerPage={setUsersPerPage} setCurrentPage={setCurrentPage} />
+            </div>
+            <div className={styles.table_wrapper} >
+                <table  >
+                    <TableHead isDisabled={!displayUsers.length} isAllSelected={isAllSelected} HandleSelectAll={HandleSelectAll} />
+                    <TableRow
+                        displayUsers={displayUsers}
+                        selectedUsers={selectedUsers}
+                        handleCheckBoxChange={handleCheckBoxChange}
+                        openConfirmationModal={openConfirmationModal}
+                        openEditModal={openEditModal}
+                    />
+                </table>
+            </div>
 
-            <SelectRowsPerPage rowsPerPage={usersPerPage} setUsersPerPage={setUsersPerPage} setCurrentPage={setCurrentPage} />
+            {
+                displayUsers.length === 0 && 
+                (
+                <div className={styles.no_data_messege}>
+                    <p>No users found !</p>
+                </div>
+                )
+            }
 
-            <table>
-                <TableHead isDisabled={!displayUsers.length} isAllSelected={isAllSelected} HandleSelectAll={HandleSelectAll} />
-                <TableRow
-                    displayUsers={displayUsers}
-                    selectedUsers={selectedUsers}
-                    handleCheckBoxChange={handleCheckBoxChange}
-                    openConfirmationModal={openConfirmationModal}
-                    openEditModal={openEditModal}
-                />
-            </table>
 
             <Pagination
                 totalPages={totalPages}
@@ -218,3 +230,5 @@ const AdminDashboard = () => {
 }
 
 export default AdminDashboard;
+
+

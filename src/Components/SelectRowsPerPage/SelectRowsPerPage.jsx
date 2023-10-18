@@ -1,3 +1,4 @@
+import { enqueueSnackbar } from "notistack";
 import styles from "./SelectRowsPerPage.module.css";
 
 const SelectRowsPerPage = ({ rowsPerPage, setUsersPerPage, setCurrentPage }) => {
@@ -6,9 +7,12 @@ const SelectRowsPerPage = ({ rowsPerPage, setUsersPerPage, setCurrentPage }) => 
     setUsersPerPage((prev) => Number(value));
     setCurrentPage(1);
   };
+  const preventTyping = (event) => {
+    event.preventDefault();
+    enqueueSnackbar("Use arrows to change value" , {variant : "warning"});
+  };
 
   return (
-    <div>
       <input
         className={styles.rows_perpage_input}
         type="number"
@@ -18,8 +22,9 @@ const SelectRowsPerPage = ({ rowsPerPage, setUsersPerPage, setCurrentPage }) => 
         id="rowsperpage"
         value={rowsPerPage}
         onChange={handleInputChange}
-      />
-    </div>
+        // to avoid letting user enter negative or zero values
+        onKeyDown={preventTyping}
+        />
   );
 };
 

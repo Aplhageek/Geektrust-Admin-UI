@@ -12,13 +12,10 @@ const [timerId, setTimerId] = useState();
     }   
 
     return (
-        <div>
-            <input className={styles.search_bar} type="text" name='query' onChange={(event) => debounceSearch(event, timerId)} />
-        </div>
+        <>
+            <input  placeholder="Search for Name, Email or Role" className={styles.search_bar} type="text" name="query"  onChange={(event) => debounceSearch(event, timerId)} />
+        </>
     )
 }
 
 export default Search;
-
-
-

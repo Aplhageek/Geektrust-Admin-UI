@@ -5,15 +5,16 @@ import DeleteIcon from '../../assets/delete.svg';
 
 const TableRow = ({ displayUsers, selectedUsers, handleCheckBoxChange, openConfirmationModal, openEditModal }) => {
     
+    
+
 
     return (
-
-        <tbody>
+        <tbody className={styles.table_body} >
             {
                 displayUsers?.map((user) => {
                     return (
-                        <tr key={user.id} >
-                            <td><input type="checkbox" checked={selectedUsers.includes((user.id))} onChange={(event) => handleCheckBoxChange(event, user.id)} /></td>
+                        <tr className={ `${selectedUsers.includes(user.id) ? styles.selectedRow : "" }`} key={user.id} >
+                            <td><input name="checkuser" type="checkbox" checked={selectedUsers.includes((user.id))} onChange={(event) => handleCheckBoxChange(event, user.id)} /></td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td> {user.role} </td>
@@ -26,7 +27,6 @@ const TableRow = ({ displayUsers, selectedUsers, handleCheckBoxChange, openConfi
                 })
             }
         </tbody>
-
     )
 }
 

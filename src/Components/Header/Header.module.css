@@ -1,12 +1,11 @@
-.header_wrapper{
-    min-width: 35rem;
-    max-width: 80vw;
-    margin: 0 auto;
-    height: 10vh;
-    font-size: 18px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    display: flex;
-    color: var(--color-blue-2);
+.header_wrapper {
+  max-width: 80vw;
+  margin: 0 auto;
+  height: 7vh;
+  font-size: 18px;
+  font-weight: 600;
+  align-items: center;
+  display: flex;
+  color: var(--color-blue-1);
+  font-weight: bold ;
 }

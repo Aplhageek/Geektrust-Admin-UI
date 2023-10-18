@@ -3,10 +3,33 @@
     justify-content: space-evenly;
     align-items: center;
     height: 24px;
+    height: 100%;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 
 .action_icons > img {
-    height: 15px;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.action_icons > img:hover {
+    transform: scale(1.1);
 }
 
 
+.selectedRow{
+    background-color: var(--color-border) !important;
+}
+
+
+@media (max-width: 550px) {
+    .action_icons{
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+        flex-direction: column;
+    }
+  }

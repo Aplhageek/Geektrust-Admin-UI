@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import styles from './EditModal.module.css';
 import { enqueueSnackbar } from "notistack";
