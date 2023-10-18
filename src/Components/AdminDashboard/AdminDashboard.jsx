@@ -98,7 +98,7 @@ const AdminDashboard = () => {
         // to remove user from selected users list
         const updatedSelectedUsers = selectedUsers.filter((userID) => userID !== userToDelete.id);
         setSelectedUsers([...updatedSelectedUsers]);
-        enqueueSnackbar(`${userToDelete.name} has been removed`, { variant: "info" });
+        enqueueSnackbar(`${userToDelete.name} has been removed`, { variant: "success" });
     }
 
     const deleteSelectedUsers = () => {
@@ -108,7 +108,7 @@ const AdminDashboard = () => {
         const updatedUsers = userList.filter((user) => !selectedUsers.includes(user.id));
         setUserList([...updatedUsers]);
         let numberOfUsers = selectedUsers.length;
-        enqueueSnackbar(`${numberOfUsers} ${numberOfUsers < 2 ? "user" : "users"} has been removed`, { variant: "info" });
+        enqueueSnackbar(`${numberOfUsers} ${numberOfUsers < 2 ? "user" : "users"} has been removed`, { variant: "success" });
         setSelectedUsers([]);
     }
 
@@ -161,7 +161,7 @@ const AdminDashboard = () => {
         setUserList((previous) => {
             return previous.map((user) => (user.id === editedUser.id ? editedUser : user));
         });
-        enqueueSnackbar(`${editedUser.name} has been updated`, { variant: "info" });
+        enqueueSnackbar(`${editedUser.name} has been updated`, { variant: "success" });
     };
 
     const onClose = () => {
