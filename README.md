@@ -27,7 +27,10 @@ Your app is ready to be deployed!
 
 ### Deployment
 
-project is deployed using netlify : [Your Link Text](https://admin-ui-jayesh.netlify.app/)
+project is deployed using netlify : [Admin UI](https://admin-ui-jayesh.netlify.app/)
+
+
+### Lighthouse Report
 
 ![Lighthouse Report](image-1.png)
 
